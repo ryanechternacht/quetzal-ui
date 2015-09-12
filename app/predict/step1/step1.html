@@ -1,1 +1,17 @@
-There are {{dataset.columns.length | json}} columns
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="col in dataset.columns" 
+                   ng-class="{active: col.active}"
+                   ng-click="setActiveColumn(col.name)">
+                    {{col.name}}
+                </a>
+    	    </div>
+
+        </div>
+        <div class="col-md-10">
+            {{activeColumn.name}}
+        </div>
+    </div>
+</div>
