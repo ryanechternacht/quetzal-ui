@@ -11,7 +11,27 @@
 
         </div>
         <div class="col-md-10">
-            {{activeColumn.name}}
+            <div class="row">
+                <img class="graph" ng-src="resources/graph.png"/>
+            </div>
+
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tr><th>Metric</th><th>Value</th></tr>
+                            <tr><td>Min Value</td><td>{{activeColumn.min}}</td></tr>
+                            <tr><td>Max Value</td><td>{{activeColumn.min}}</td></tr>
+                            <tr><td>Mean</td><td>{{activeColumn.mean}}</td></tr>
+                            <tr><td>Median</td><td>{{activeColumn.med}}</td></tr>
+                            <tr><td>Std Deviation</td><td>{{activeColumn.std}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
