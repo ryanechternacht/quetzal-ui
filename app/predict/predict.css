@@ -6,3 +6,12 @@
     width: 400px;
     height: 250px;
 }
+
+svg {
+    margin-left: 50px;
+}
+
+svg .bar { 
+    fill: teal;
+    width: 50px;
+}
