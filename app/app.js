@@ -5,6 +5,7 @@ angular.module('quetzal-ui', [
   'ngRoute',
   'step1',
   'step2',
+  'd3'
 ])
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider
