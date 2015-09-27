@@ -7,7 +7,7 @@ svg.attr("width", width)
    .attr("height", height);
 
 function makeMyData() { 
-    dataset = [
+    var dataset = [
         {"x": -2.808341779, "y":8},
         {"x": -2.513197563, "y":8},
         {"x": -2.218053347, "y":3},
