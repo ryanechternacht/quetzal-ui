@@ -4,22 +4,21 @@ var drawHistogram = function(d3, svg, scope, iElement, iAttrs, data) {
     // remove all previous items before render
     svg.selectAll("*").remove();
 
-    var width = 800,
-    height = 300;
+    var width = scope.width,
+        height = scope.height,
+        dataset = scope.data,
+        variableName = scope.variable;
 
     svg.attr("width", width)
        .attr("height", height);
 
-    var dataset = scope.data;
+    var margin = { top: 100, bottom: 30, left: 30, right: 30}
 
     var barPadding = 5,
-        xPadding = 30,
-        yPaddingBottom = 30,
-        yPaddingTop = 100,
-        yBottom = height - yPaddingBottom,
-        yTop = yPaddingTop,
-        xLeft = xPadding,
-        xRight = width - 2*xPadding;
+        yBottom = height - margin.bottom,
+        yTop = margin.top,
+        xLeft = margin.left,
+        xRight = width - margin.right;
 
     var yScale = d3.scale.linear()
                     .domain([0, d3.max(dataset, function(d) { return d.y; })])
@@ -49,9 +48,8 @@ var drawHistogram = function(d3, svg, scope, iElement, iAttrs, data) {
         .text(function(d,i) { return d.y })
         .attr("y", function(d,i) { return yScale(d.y) - 5; })
         .attr("x", xScale.rangeBand() / 2)
-        .attr("font-family", "sans-serif")
-        .attr("font-fize", "11px")
-        .attr("text-anchor", "middle");
+        .attr("text-anchor", "middle")
+        .attr("class", "bar-label");
 
     var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -74,13 +72,21 @@ var drawHistogram = function(d3, svg, scope, iElement, iAttrs, data) {
 
     var title = svg.append("g")
         .attr("class", "title")
-        .attr("transform", "translate(0,10)")
+        .attr("transform", "translate(0,30)")
         .attr("width", width);
 
     title.append("text")
+        .text("Histogram of " + variableName)
         .attr("x", width / 2)
         .attr("text-anchor", "middle")
-        .text("Histogram of " + scope.variable);
+        .attr("class", "main-title");
+
+    title.append("text")
+        .text("Divided into 20 equal size buckets")
+        .attr("transform", "translate(0, 20)")
+        .attr("x", width / 2)
+        .attr("text-anchor", "middle")
+        .attr("class", "sub-title");
 }
 
 angular.module('d3').directive('d3Histogram', ['d3', function(d3) { 
@@ -88,7 +94,9 @@ angular.module('d3').directive('d3Histogram', ['d3', function(d3) {
         restrict: 'EA',
         scope: {
             data: '=',
-            variable: '='
+            variable: '=', // binding to an angular object
+            width: '@',    // static binding to a value
+            height: '@'
             // label: '@',
             // onClick: '&'
         },
