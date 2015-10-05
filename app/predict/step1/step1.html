@@ -13,7 +13,7 @@
         <div class="col-md-10">
             <div class="row">
                 <!-- <img class="graph" ng-src="resources/graph.png"/> -->
-                <d3-histogram data="activeColumn.histogram"></d3-histogram>
+                <d3-histogram data="activeColumn.histogram" variable="activeColumn.name"></d3-histogram>
             </div>
 
             <div>
@@ -23,7 +23,7 @@
                         <table class="table">
                             <tr><th>Metric</th><th>Value</th></tr>
                             <tr><td>Min Value</td><td>{{activeColumn.min}}</td></tr>
-                            <tr><td>Max Value</td><td>{{activeColumn.min}}</td></tr>
+                            <tr><td>Max Value</td><td>{{activeColumn.max}}</td></tr>
                             <tr><td>Mean</td><td>{{activeColumn.mean}}</td></tr>
                             <tr><td>Median</td><td>{{activeColumn.med}}</td></tr>
                             <tr><td>Std Deviation</td><td>{{activeColumn.std}}</td></tr>
